@@ -5,6 +5,7 @@
 # colocado no ar usando o framework flask
 # Para usar é necessario instalar as dependencias (com pip) e rodar os comandos:
 # export FLASK_APP=covid-server.py 
+# export FLASK_RUN_PORT=8080 (para configurar a porta)
 # flask run
 
 from flask import Flask,request
