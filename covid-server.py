@@ -14,7 +14,8 @@ import covid_api as api
 import time as t
 
 # caminho onde os arquivos analisados sao salvos. mudar convenientemente este caminho
-files_path = '/Users/adalbertocajueiro/Documents/covid-19/tmp_files/'
+#files_path = '/Users/adalbertocajueiro/Documents/covid-19/tmp_files/'
+files_path = '/home/ubuntu/tmp_files/'
 
 #carrega o modelo quando da inicializacao do servico
 model = api.ModelSingleton.getInstance().model

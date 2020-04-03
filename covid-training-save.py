@@ -33,7 +33,9 @@ codigo par afazer o download e descompactar os dados a serem utilizados
 """
 
 # pasta contendo os dados de treinamento baixados
-train_dir = '/Users/adalbertocajueiro/Downloads/two/train'
+# train_dir = '/Users/adalbertocajueiro/Downloads/two/train'
+train_dir = '/home/ubuntu/covid-data/two/train'
+
 img_size = (150, 150)
 
 

@@ -24,6 +24,10 @@ import os
 # necessario por problemas de execucao com a biblioteca 
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
+# diretorio contando os testes
+#test_dir = '/Users/adalbertocajueiro/Downloads/two/test'
+test_dir = '/home/ubuntu/covid-data/two/test'
+
 #carrega o modelo a partir de um arquivo salvo previamente
 def load_model_from_file(path):
   model = load_model(path)
@@ -33,7 +37,7 @@ def load_model_from_file(path):
 #executa os testes abseado em uma abteria de arquivos a serem analisados
 #modificar adequadamente a pasta contendo os dados de tetes
 def run_tests(model):
-  test_dir = '/Users/adalbertocajueiro/Downloads/two/test'
+  
   img_size = (150, 150)
   test_datagen = ImageDataGenerator(rescale=1. / 255)
   test_generator = test_datagen.flow_from_directory(
