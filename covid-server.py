@@ -14,13 +14,17 @@ from flask_cors import CORS
 import covid_api as api
 import time as t
 
+from covid_utils import files_path,train_dir
+
 # caminho onde os arquivos analisados sao salvos. mudar convenientemente este caminho
 #files_path = '/Users/adalbertocajueiro/Documents/covid-19/tmp_files/'
-files_path = '/home/ubuntu/tmp_files/'
+#files_path = '/home/ubuntu/tmp_files/'
 
 #carrega o modelo quando da inicializacao do servico
-model = api.ModelSingleton.getInstance().model
-meta_data = api.run_tests(model)
+#model = api.ModelSingleton.getInstance().model
+#meta_data = api.run_tests(model)
+#test_count = api.fileCount(train_dir)
+tests = api.fileCount(train_dir)
 app = Flask(__name__)
 # para resolver o problema de Cross Origins com o front-end
 CORS(app)
@@ -40,8 +44,9 @@ def check_covid():
 @app.route('/model', methods=['GET', 'POST'])
 def model():
   return { 
-    "loss": str(meta_data[0]),
-    "accuracy":str(meta_data[1])
+    "loss": str(api.ModelSingleton.getInstance().test_data[0]),
+    "accuracy":str(api.ModelSingleton.getInstance().test_data[1]),
+    "tests":tests
   }
 
 @app.route('/analyse', methods=['POST'])

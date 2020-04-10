@@ -20,19 +20,32 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.preprocessing import image
 import numpy as np
 import os
+from covid_utils import test_dir,train_dir
 
 # necessario por problemas de execucao com a biblioteca 
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
 # diretorio contando os testes
-#test_dir = '/Users/adalbertocajueiro/Downloads/two/test'
-test_dir = '/home/ubuntu/covid-data/two/test'
+# test_dir = '/Users/adalbertocajueiro/Downloads/two/test'
+#test_dir = '/home/ubuntu/covid-data/two/test'
 
 #carrega o modelo a partir de um arquivo salvo previamente
 def load_model_from_file(path):
   model = load_model(path)
   model.summary()
   return model
+
+def fileCount(folder):
+    count = 0
+
+    for filename in os.listdir(folder):
+      path = os.path.join(folder, filename)
+      if os.path.isfile(path):
+        count += 1
+      elif os.path.isdir(path):
+        count += fileCount(path)
+     
+    return count
 
 #executa os testes abseado em uma abteria de arquivos a serem analisados
 #modificar adequadamente a pasta contendo os dados de tetes
@@ -74,6 +87,7 @@ class ModelSingleton:
    # model.h5 é o arquivo salvo mas pode ser qualquer outro que contenha o modelo
    # ex: um para modelo com raio-x, outro para modelo com tomografia, etc. 
    model = load_model_from_file('model.h5')
+   test_data = run_tests(model)
    @staticmethod 
    def getInstance():
       """ Static access method. """
